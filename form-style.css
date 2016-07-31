@@ -1,0 +1,37 @@
+h1 {
+    text-align: center;
+}
+body {
+    color: black;
+    background-color: grey;
+}
+#container {
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+.person {
+    background-color: silver;
+    border: 2px solid white;
+    border-radius: 40px;
+    padding: 2px;
+    text-align: center;
+}
+.clicked {
+    border-color: red;
+}
+#info {
+    background-color: ;
+}
+#monTotals {
+    text-align: center;
+    padding-top: 40px;
+    font-weight: bold;
+}
+.labels {
+    background-color: silver;
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 40px;
+}
+.
