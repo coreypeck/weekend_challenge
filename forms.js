@@ -25,37 +25,37 @@ $(document).ready(function() {
         if (isNaN(values.employeefirstname) == true && values.employeefirstname != " ") {
             if (isNaN(values.employeelastname) == true && values.employeelastname != " ") {
                 if (isNaN(values.employeenumber) == false && values.employeenumber != " ") {
-                    if (isNaN(values.employeesalary) == false && (values.employeesalary != " ")) {
-                        // clear out inputs
-                        $('#employeeinfo').find('input[type=text]').val('');
-                        // append to DOM
-                        appendDom(values);
-                        //resets the default values ofnumber and salary
-                        document.getElementById("employeenumber").value = " ";
-                        document.getElementById("employeesalary").value = " ";
-                        // $('div.person').on("mouseover", function() {
-                        //     $(this).animate({
-                        //         marginLeft: 300,
-                        //         marginRight: 300,
-                        //     });
-                        // });
-                        // $('div.person').on("mouseout", function() {
-                        //     $(this).animate({
-                        //         marginLeft: 0,
-                        //         marginRight: 0,
-                        //     });
-                        // });
-                        $("div.person").on('mouseover', 50, function() {
-                          $(this).stop().animate({marginLeft: 100,marginRight: 100});
-                        });
-                        $("div.person").on('mouseleave', 50, function() {
-                          $(this).stop().animate({marginLeft: 0, marginRight: 0});
-                        });
+                    if (isNaN(values.employeetitle) == true && values.employeetitle != " ") {
+                        if (isNaN(values.employeesalary) == false && values.employeesalary != " ") {
+                            // clear out inputs
+                            $('#employeeinfo').find('input[type=text]').val('');
+                            // append to DOM
+                            appendDom(values);
+                            //resets the default values ofnumber and salary
+                            document.getElementById("employeenumber").value = " ";
+                            document.getElementById("employeesalary").value = " ";
+                            $("div.person").on('mouseover', 500, function() {
+                                $(this).stop().animate({
+                                    marginLeft: 100,
+                                    marginRight: 100
+                                });
+                            });
+                            $("div.person").on('mouseleave', 500, function() {
+                                $(this).stop().animate({
+                                    marginLeft: 0,
+                                    marginRight: 0
+                                });
+                            });
 
+                        } else {
+                            alert("Please enter Valid Salary Amount");
+                            //switches focus to the field that is causing the issue
+                            $("#employeesalary").focus();
+                        }
                     } else {
-                        alert("Please enter Valid Salary Amount");
+                        alert("Please enter Valid Employee Title");
                         //switches focus to the field that is causing the issue
-                        $("#employeesalary").focus();
+                        $("#employeetitle").focus();
                     }
                 } else {
                     alert("Please enter Valid Employee Number");
@@ -88,17 +88,19 @@ $(document).ready(function() {
         //Turns Monthly into a string with 2 decimal points
         monthly = monthly.toFixed(2);
         //pushes all info relating to the person to employeeArray
-        employeeArray.push(empInfo.employeefirstname, empInfo.employeelastname, empInfo.employeenumber, empInfo.employeesalary);
+        employeeArray.push(empInfo.employeefirstname, empInfo.employeelastname, empInfo.employeenumber, empInfo.employeetitle, empInfo.employeesalary);
         //Adds this line of text to be displayed in our dynamically created .person
-        $el.append('<p>' + "Employee Name: " + employeeArray[0] + " " + employeeArray[1] + " Employee Number: #" + employeeArray[2] + " Employee Salary: $" + employeeArray[3] + '<p>');
+        $el.append('<p>' + "Employee Name: " + employeeArray[0] + " " + employeeArray[1] + " Employee Number: #" + employeeArray[2] + " " + "Employee Title: " + employeeArray[3] + " " + " Employee Salary: $" + employeeArray[4] + '<p>');
         //replaces the line of text with the monthly total with the current totals
         $appThis.replaceWith('<p>' + "The Monthly Total is: $" + (monthly) + '</p>');
         //creates a delete button for each .person
         $el.append('<button class="delete">Delete</button>');
         //Setting up the actions to take when the delete button is clicked
         $("#container").off().on("click", ".delete", function() {
+            //Actually removes the field the .person was residing in
+            $(this).remove(".person");
             //Fade out effect applied
-            $(this).parent().fadeOut("slow", function() {
+            $(this).parent().fadeOut(100, function() {
                 var val = "";
                 //converts the output from our first $el.append and converts it into a single string
                 val = ($(this).children("p").text());
@@ -120,8 +122,6 @@ $(document).ready(function() {
                 $appThis.replaceWith('<p>' + "The Monthly Total is: $" + (monthly) + '</p>');
                 //Switches the focus to promote new input
                 $("#employeefirstname").focus();
-                //Actually removes the field the .person was residing in
-                $(this).remove(".person");
             });
         });
     };
