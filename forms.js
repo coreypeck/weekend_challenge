@@ -97,8 +97,6 @@ $(document).ready(function() {
         $el.append('<button class="delete">Delete</button>');
         //Setting up the actions to take when the delete button is clicked
         $("#container").off().on("click", ".delete", function() {
-            //Actually removes the field the .person was residing in
-            $(this).remove(".person");
             //Fade out effect applied
             $(this).parent().fadeOut(100, function() {
                 var val = "";
@@ -122,6 +120,8 @@ $(document).ready(function() {
                 $appThis.replaceWith('<p>' + "The Monthly Total is: $" + (monthly) + '</p>');
                 //Switches the focus to promote new input
                 $("#employeefirstname").focus();
+                //Actually removes the field the .person was residing in
+                $(this).parent().remove(".person");
             });
         });
     };
